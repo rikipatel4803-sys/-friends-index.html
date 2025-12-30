@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🎉 Happy New Year Friends 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#1d2671,#c33764);
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+color:#fff;
+}
+
+/* FLOATING PARTY EMOJIS (IMAGE STYLE) */
+.float{
+position:fixed;
+bottom:-40px;
+pointer-events:none;
+animation:floatUp linear forwards;
+opacity:.8;
+}
+
+@keyframes floatUp{
+from{transform:translateY(0) scale(.8)}
+to{transform:translateY(-120vh) scale(1.2)}
+}
+
+/* CARD */
+.card{
+width:88%;
+max-width:420px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+border-radius:22px;
+padding:30px 22px;
+text-align:center;
+box-shadow:0 18px 35px rgba(0,0,0,.35);
+cursor:pointer;
+opacity:0;
+transform:scale(.9);
+transition:.5s;
+}
+
+.card.show{
+opacity:1;
+transform:scale(1);
+}
+
+.card h1{
+font-size:1.9em;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:1.05em;
+line-height:1.6;
+}
+
+.tap{
+margin-top:16px;
+opacity:.75;
+font-size:.95em;
+}
+
+audio{display:none}
+</style>
+</head>
+
+<body>
+
+<div class="card show" id="card">
+<h1>🎉 Happy New Year</h1>
+<p>Warning ⚠️<br>This year also bakchodi full on 😎🔥</p>
+<div class="tap">Tap Bro 👉</div>
+</div>
+
+<!-- ✅ MUSIC ADDED HERE -->
+<audio id="bgm" loop>
+<source src="FRND_app_pay_withdraw_video_trending_shorts_frnds_news_live_withdraw_subscribe_support_128KBPS.mp4">
+</audio>
+
+<script>
+/* SLIDES */
+const slides = [
+{
+title:"🥂 Happy New Year",
+text:"Naya saal aa gaya…<br>Par gang wahi purani hai 😎"
+},
+{
+title:"👯 Squad",
+text:"Kam log hain…<br>Par asli wale hain 🔥"
+},
+{
+title:"😂 Memories",
+text:"Pichle saal ki bakchodi yaad hai?<br>Is saal double hogi 😆"
+},
+{
+title:"🤝 Dosti",
+text:"No drama, no fake log…<br>Sirf real friends 💯"
+},
+{
+title:"🚀 New Goals",
+text:"Success apni hogi…<br>Par party saath me hogi 🥳"
+},
+{
+title:"💥 Promise",
+text:"Chahe kuch bhi ho jaye…<br>Group kabhi nahi tutega 🤞"
+},
+{
+title:"❤️ Final",
+text:"Happy New Year Mere Dost 💙<br>Love you all 😎"
+}
+];
+
+let index = 0;
+const card = document.getElementById("card");
+const music = document.getElementById("bgm");
+
+/* MUSIC STARTS ON FIRST TAP */
+card.addEventListener("click",()=>{
+if(music.paused) music.play();
+nextSlide();
+});
+
+function nextSlide(){
+index++;
+if(index >= slides.length) return;
+
+card.classList.remove("show");
+
+setTimeout(()=>{
+card.innerHTML = `
+<h1>${slides[index].title}</h1>
+<p>${slides[index].text}</p>
+${index < slides.length-1 ? '<div class="tap">Tap Bro 👉</div>' : ''}
+`;
+card.classList.add("show");
+},400);
+}
+
+/* 🎉 FLOATING PARTY EMOJIS */
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="float";
+f.innerHTML=["🎉","🥂","🔥","😂","💃","🕺"][Math.floor(Math.random()*6)];
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=16+Math.random()*22+"px";
+f.style.animationDuration=7+Math.random()*7+"s";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),16000);
+},500);
+</script>
+
+</body>
+</html>
