@@ -1,101 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>🎉 Happy New Year 🎉</title>
+<title>Happy New Year Panoti</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  height:100vh;
-  background: radial-gradient(circle at top, #1a0033, #000);
-  font-family:'Poppins',sans-serif;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
+height:100vh;
+background:radial-gradient(circle at top,#32004f,#000);
+font-family:Poppins;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
 }
 
 /* stars */
 .stars span{
-  position:absolute;
-  width:2px;height:2px;
-  background:white;
-  animation:move linear infinite;
+position:absolute;
+width:2px;height:2px;
+background:#fff;
+animation:fall linear infinite;
 }
-@keyframes move{
-  from{transform:translateY(-100vh)}
-  to{transform:translateY(100vh)}
+@keyframes fall{
+from{transform:translateY(-100vh)}
+to{transform:translateY(120vh)}
+}
+
+/* floating emojis */
+.float{
+position:absolute;
+font-size:20px;
+opacity:.7;
+animation:float 8s linear infinite;
+}
+@keyframes float{
+from{transform:translateY(110vh)}
+to{transform:translateY(-130vh)}
 }
 
 /* card */
 .card{
-  position:relative;
-  padding:40px 25px;
-  border-radius:25px;
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(20px);
-  box-shadow:0 0 40px rgba(255,0,255,.6);
-  text-align:center;
-  max-width:340px;
-  z-index:5;
+width:340px;
+padding:35px 25px;
+border-radius:25px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(20px);
+box-shadow:0 0 45px rgba(255,0,255,.8);
+text-align:center;
+animation:zoom 1.2s ease;
+z-index:5;
+}
+@keyframes zoom{
+from{opacity:0;transform:scale(.6)}
+to{opacity:1;transform:scale(1)}
 }
 
 h1{
-  font-family:'Pacifico',cursive;
-  font-size:42px;
-  color:#ffddff;
-  text-shadow:0 0 20px #ff00ff;
+font-family:Pacifico;
+font-size:42px;
+color:#ffccff;
+text-shadow:0 0 20px #ff00ff;
+}
+
+.name{
+font-size:28px;
+margin:8px 0;
+color:#ffd1ff;
+text-shadow:0 0 15px #ff00ff;
 }
 
 .year{
-  font-size:60px;
-  font-weight:800;
-  color:#00ffe7;
-  text-shadow:0 0 25px #00ffe7;
-}
-
-p{
-  margin:15px 0;
-  font-size:15px;
-  opacity:.9;
+font-size:60px;
+color:#00ffe7;
+font-weight:800;
+text-shadow:0 0 30px #00ffe7;
 }
 
 .heart{
-  font-size:55px;
-  animation:beat 1s infinite;
-  margin:15px 0;
+font-size:52px;
+animation:pulse 1s infinite;
 }
-@keyframes beat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.3)}
+@keyframes pulse{
+50%{transform:scale(1.3)}
+}
+
+#countdown{
+font-size:45px;
+font-weight:800;
+margin:10px 0;
+color:#ffea00;
+display:none;
+}
+
+#msg{
+font-size:14px;
+min-height:60px;
+margin-top:12px;
 }
 
 button{
-  margin-top:20px;
-  padding:14px 30px;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(45deg,#ff00ff,#00ffe7);
-  color:#000;
-  font-weight:700;
-  font-size:16px;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(255,0,255,.9);
+margin-top:18px;
+padding:14px 35px;
+border:none;
+border-radius:40px;
+font-size:16px;
+font-weight:700;
+background:linear-gradient(45deg,#ff00ff,#00ffe7);
+box-shadow:0 0 25px #ff00ff;
+cursor:pointer;
 }
 
-.confetti{
-  position:absolute;
-  width:8px;height:8px;
-  background:red;
-  animation:fall linear infinite;
+/* photos */
+.photo{
+margin-top:18px;
+height:200px;
+border-radius:18px;
+overflow:hidden;
+display:none;
+box-shadow:0 0 25px cyan;
 }
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg)}
+.photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+animation:fade 4s infinite;
+}
+@keyframes fade{
+0%{opacity:0}
+20%{opacity:1}
+80%{opacity:1}
+100%{opacity:0}
+}
+
+/* confetti */
+.confetti{
+position:absolute;
+width:10px;height:10px;
+animation:conf 3s linear infinite;
+}
+@keyframes conf{
+to{transform:translateY(120vh) rotate(360deg)}
+}
+
+.share{
+margin-top:12px;
+font-size:14px;
+color:#00ffe7;
+cursor:pointer;
+}
+
+.from{
+margin-top:10px;
+font-size:13px;
+opacity:.8;
 }
 </style>
 </head>
@@ -105,41 +167,100 @@ button{
 <div class="stars"></div>
 
 <div class="card">
-  <h1>Happy New Year</h1>
-  <div class="year">2026</div>
-  <div class="heart">❤️</div>
-  <p>
-    New year = new dreams ✨  
-    Smile, success & happiness always with you 💫💕  
-    Thank you for being an amazing friend 🤍
-  </p>
+<h1>Happy New Year</h1>
+<div class="name">💖 Panoti 💖</div>
+<div id="countdown">3</div>
+<div class="year">2026</div>
+<div class="heart">❤️</div>
 
-  <button onclick="playMusic()">🎶 Tap & Celebrate 🎉</button>
+<div id="msg"></div>
+
+<button onclick="start()">🎶 Tap & Celebrate 🎉</button>
+
+<div class="photo" id="photo">
+<img id="img" src="photo1.jpg">
+</div>
+
+<div class="share" onclick="share()">📤 Share on WhatsApp</div>
+<div class="from">— From someone who cares 💌</div>
 </div>
 
 <audio id="music" src="videoplayback.m4a"></audio>
 
 <script>
 // stars
-for(let i=0;i<120;i++){
-  let s=document.createElement("span");
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=2+Math.random()*5+"s";
-  document.querySelector(".stars").appendChild(s);
+for(let i=0;i<130;i++){
+let s=document.createElement("span");
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=2+Math.random()*5+"s";
+document.querySelector(".stars").appendChild(s);
 }
 
-// music + confetti
-function playMusic(){
-  document.getElementById("music").play();
-  for(let i=0;i<120;i++){
-    let c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration=2+Math.random()*3+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),5000);
-  }
+// emojis
+let emo=["💖","✨","🎉","💫","❤️"];
+for(let i=0;i<30;i++){
+let e=document.createElement("div");
+e.className="float";
+e.innerText=emo[Math.floor(Math.random()*emo.length)];
+e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=6+Math.random()*6+"s";
+document.body.appendChild(e);
+}
+
+// typing text
+let text="New year = new dreams ✨ Smile, success & happiness always with you 💫 Thank you for being the most beautiful friend ever 🤍";
+let t=0;
+function type(){
+if(t<text.length){
+document.getElementById("msg").innerHTML+=text.charAt(t);
+t++;setTimeout(type,40);
+}
+}
+
+// slideshow
+let pics=["photo1.jpg","photo2.jpg","photo3.jpg"];
+let p=0;
+
+// start
+function start(){
+navigator.vibrate?.(150);
+let cd=3;
+document.getElementById("countdown").style.display="block";
+let interval=setInterval(()=>{
+document.getElementById("countdown").innerText=cd;
+cd--;
+if(cd<0){
+clearInterval(interval);
+document.getElementById("countdown").style.display="none";
+launch();
+}
+},700);
+}
+
+function launch(){
+document.getElementById("music").play();
+document.getElementById("photo").style.display="block";
+type();
+
+setInterval(()=>{
+p=(p+1)%pics.length;
+document.getElementById("img").src=pics[p];
+},4000);
+
+for(let i=0;i<180;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML=Math.random()>.7?"❤️":"";
+c.style.left=Math.random()*100+"vw";
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),5000);
+}
+}
+
+function share(){
+let text="Happy New Year Panoti 🎉❤️ See this surprise ✨";
+window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
 </script>
 
