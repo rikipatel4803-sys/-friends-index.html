@@ -2,163 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>🎉 Happy New Year Friends 🎉</title>
+<title>🎉 Happy New Year 🎉</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
-height:100vh;
-background:linear-gradient(135deg,#1d2671,#c33764);
-display:flex;
-align-items:center;
-justify-content:center;
-font-family:'Poppins',sans-serif;
-overflow:hidden;
-color:#fff;
+  height:100vh;
+  background: radial-gradient(circle at top, #1a0033, #000);
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
 }
 
-/* FLOATING PARTY EMOJIS (IMAGE STYLE) */
-.float{
-position:fixed;
-bottom:-40px;
-pointer-events:none;
-animation:floatUp linear forwards;
-opacity:.8;
+/* stars */
+.stars span{
+  position:absolute;
+  width:2px;height:2px;
+  background:white;
+  animation:move linear infinite;
+}
+@keyframes move{
+  from{transform:translateY(-100vh)}
+  to{transform:translateY(100vh)}
 }
 
-@keyframes floatUp{
-from{transform:translateY(0) scale(.8)}
-to{transform:translateY(-120vh) scale(1.2)}
-}
-
-/* CARD */
+/* card */
 .card{
-width:88%;
-max-width:420px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(12px);
-border-radius:22px;
-padding:30px 22px;
-text-align:center;
-box-shadow:0 18px 35px rgba(0,0,0,.35);
-cursor:pointer;
-opacity:0;
-transform:scale(.9);
-transition:.5s;
+  position:relative;
+  padding:40px 25px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 40px rgba(255,0,255,.6);
+  text-align:center;
+  max-width:340px;
+  z-index:5;
 }
 
-.card.show{
-opacity:1;
-transform:scale(1);
+h1{
+  font-family:'Pacifico',cursive;
+  font-size:42px;
+  color:#ffddff;
+  text-shadow:0 0 20px #ff00ff;
 }
 
-.card h1{
-font-size:1.9em;
-margin-bottom:10px;
+.year{
+  font-size:60px;
+  font-weight:800;
+  color:#00ffe7;
+  text-shadow:0 0 25px #00ffe7;
 }
 
-.card p{
-font-size:1.05em;
-line-height:1.6;
+p{
+  margin:15px 0;
+  font-size:15px;
+  opacity:.9;
 }
 
-.tap{
-margin-top:16px;
-opacity:.75;
-font-size:.95em;
+.heart{
+  font-size:55px;
+  animation:beat 1s infinite;
+  margin:15px 0;
+}
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.3)}
 }
 
-audio{display:none}
+button{
+  margin-top:20px;
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,#ff00ff,#00ffe7);
+  color:#000;
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,0,255,.9);
+}
+
+.confetti{
+  position:absolute;
+  width:8px;height:8px;
+  background:red;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
 </style>
 </head>
 
 <body>
 
-<div class="card show" id="card">
-<h1>🎉 Happy New Year</h1>
-<p>Warning ⚠️<br>This year also bakchodi full on 😎🔥</p>
-<div class="tap">Tap Bro 👉</div>
+<div class="stars"></div>
+
+<div class="card">
+  <h1>Happy New Year</h1>
+  <div class="year">2026</div>
+  <div class="heart">❤️</div>
+  <p>
+    New year = new dreams ✨  
+    Smile, success & happiness always with you 💫  
+    Thank you for being an amazing friend 🤍
+  </p>
+
+  <button onclick="playMusic()">🎶 Tap & Celebrate 🎉</button>
 </div>
 
-<!-- ✅ MUSIC ADDED HERE -->
-<audio id="bgm" loop>
-<source src="FRND_app_pay_withdraw_video_trending_shorts_frnds_news_live_withdraw_subscribe_support_128KBPS.mp4">
-</audio>
+<audio id="music" src="videoplayback.m4a"></audio>
 
 <script>
-/* SLIDES */
-const slides = [
-{
-title:"🥂 Happy New Year",
-text:"Naya saal aa gaya…<br>Par gang wahi purani hai 😎"
-},
-{
-title:"👯 Squad",
-text:"Kam log hain…<br>Par asli wale hain 🔥"
-},
-{
-title:"😂 Memories",
-text:"Pichle saal ki bakchodi yaad hai?<br>Is saal double hogi 😆"
-},
-{
-title:"🤝 Dosti",
-text:"No drama, no fake log…<br>Sirf real friends 💯"
-},
-{
-title:"🚀 New Goals",
-text:"Success apni hogi…<br>Par party saath me hogi 🥳"
-},
-{
-title:"💥 Promise",
-text:"Chahe kuch bhi ho jaye…<br>Group kabhi nahi tutega 🤞"
-},
-{
-title:"❤️ Final",
-text:"Happy New Year Mere Dost 💙<br>Love you all 😎"
-}
-];
-
-let index = 0;
-const card = document.getElementById("card");
-const music = document.getElementById("bgm");
-
-/* MUSIC STARTS ON FIRST TAP */
-card.addEventListener("click",()=>{
-if(music.paused) music.play();
-nextSlide();
-});
-
-function nextSlide(){
-index++;
-if(index >= slides.length) return;
-
-card.classList.remove("show");
-
-setTimeout(()=>{
-card.innerHTML = `
-<h1>${slides[index].title}</h1>
-<p>${slides[index].text}</p>
-${index < slides.length-1 ? '<div class="tap">Tap Bro 👉</div>' : ''}
-`;
-card.classList.add("show");
-},400);
+// stars
+for(let i=0;i<120;i++){
+  let s=document.createElement("span");
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=2+Math.random()*5+"s";
+  document.querySelector(".stars").appendChild(s);
 }
 
-/* 🎉 FLOATING PARTY EMOJIS */
-setInterval(()=>{
-let f=document.createElement("div");
-f.className="float";
-f.innerHTML=["🎉","🥂","🔥","😂","💃","🕺"][Math.floor(Math.random()*6)];
-f.style.left=Math.random()*100+"vw";
-f.style.fontSize=16+Math.random()*22+"px";
-f.style.animationDuration=7+Math.random()*7+"s";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),16000);
-},500);
+// music + confetti
+function playMusic(){
+  document.getElementById("music").play();
+  for(let i=0;i<120;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDuration=2+Math.random()*3+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
 </script>
 
 </body>
